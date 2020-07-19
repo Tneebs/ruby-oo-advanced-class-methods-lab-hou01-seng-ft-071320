@@ -26,6 +26,18 @@ class Song
     end
   end
 
+  def self.find_or_create_by_name(song)
+    if self.find_by_name(song) 
+      self.find_by_name(song)
+    else
+      self.create_by_name(song)
+    end
+  end
+
+  def self.alphabetical
+    self.all.sort_by {|track| track.name}
+  end
+
 
   def self.all
     @@all
