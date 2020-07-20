@@ -1,7 +1,7 @@
 require 'pry'
 
 class Song
-  attr_accessor :name, :artist_name
+  attr_accessor :name, :artist_name, :artist
   @@all = []
 
   def self.create
@@ -38,6 +38,16 @@ class Song
     self.all.sort_by {|track| track.name}
   end
 
+  def self.new_from_filename(file)  #file = "Thundercat - For Love I Come.mp3"
+    file_array = file.split(" - ")
+    artist = file_array[0]
+    name = file_array[1].delete(".mp3")
+    song = self.new
+    song.name = name
+    song.artist = artist
+    song
+    # binding.pry
+  end
 
   def self.all
     @@all
